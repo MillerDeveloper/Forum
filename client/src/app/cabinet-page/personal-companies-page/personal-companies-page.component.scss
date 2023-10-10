@@ -1,0 +1,85 @@
+.companies {
+     .company-box {
+          margin-top: 30px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px;
+
+          &:hover {
+               background: rgba(233, 233, 233, 0.562);
+               cursor: pointer;
+          }
+
+          .avatar {
+               display: flex;
+               align-items: center;
+
+               img {
+                    border-radius: 5px;
+                    height: auto;
+                    max-width: 250px;
+               }
+
+               .name-company {
+                    margin-left: 20px;
+               }
+          }
+
+          .btn-action {
+               width: 40px;
+               height: 40px;
+               border-radius: 50%;
+               font-size: 16px;
+               padding: 0;
+               margin-right: 5px;
+          }
+     }
+}
+
+
+.no-companies {
+     text-align: center;
+     font-size: 45px;
+     margin-top: 60px;
+     font-weight: 200;
+     margin-bottom: 20px;
+}
+
+.btn-add-company {
+     display: block;
+     margin: 0 auto;
+     padding: 10px 30px;
+     font-size: 18px;
+}
+
+@media all and (max-width: 991px) {
+     .companies {
+          .company-box {
+               .avatar {
+                    img {
+                         max-width: 150px;
+                    }
+               }
+          }
+     }
+}
+
+@media all and (max-width: 768px) {
+     .companies {
+          .company-box {
+               flex-direction: column;
+
+               .review-box {
+                    text-align: center;
+                    margin-bottom: 15px;
+               }
+
+               app-rating {
+                    margin: 20px auto;
+               }
+          }
+
+          padding-bottom: 50px;
+     }
+}

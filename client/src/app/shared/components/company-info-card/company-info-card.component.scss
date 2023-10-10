@@ -1,0 +1,150 @@
+.company_info {
+     display: flex;
+     justify-content: center;
+     margin-top: 60px;
+
+     .btn-save {
+          width: 100%;
+     }
+
+     .company_info-box {
+          min-width: 500px;
+          margin: 0 60px 30px 60px;
+     }
+
+     .card-box {
+          margin: 0 0px 30px 0px; 
+
+          form {
+               padding: 0 20px 20px 20px;
+               height: auto;
+
+               textarea {
+                    width: 98%;
+                    padding-left: 5px;
+                    border-radius: 5px;
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                    margin-top: 5px;
+               }
+          }
+     }
+
+     .add_item {
+          .add_item-field { 
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               
+               button {
+                    margin-left: 10px;
+                    height: 30px;
+                    width: 33px;
+                    padding: 0;
+                    font-size: 20px;
+                    font-weight: bold;
+               }
+          }
+
+          .tags {
+               margin-top: 10px;
+          }
+     }
+
+     .avatar {
+          margin-top: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          img {
+               border-radius: 5px; 
+               margin-right: 20px;
+               max-width: 200px;
+               height: auto;
+          }
+
+          .select-avatar {
+               width: 100%;
+          }
+     }
+
+     .address {
+          height: auto;
+
+          .city {
+               display: block;
+               padding-left: 30px;
+          }
+
+          .address-box {
+               // display: block;
+               display: inline-block;
+               border-top: 1px solid #000;
+               margin-top: 20px;
+               padding-top: 10px;
+          }
+     }
+
+     .address-card {
+          height: auto;
+     }
+
+     // .address-box {
+     //      display: inline-block;
+     // }
+}
+
+
+@media all and (max-width: 1200px) {
+     .company_info {
+          .company_info-box {
+               min-width: 400px;
+               margin: 0 15px 30px 15px;
+          }
+     }
+}
+
+@media all and (max-width: 991px) {
+     .company_info {
+          flex-direction: column;
+     }
+
+     .company_info-box:nth-child(1) {
+          order: 2;
+     }
+     
+     .company_info {
+          .company_info-box {
+               margin: 0 15px 15px 15px;
+          }
+
+          .address-card {
+               margin-bottom: 15px;
+          }
+     }
+}
+
+@media all and (max-width: 420px) {
+     .company_info {
+          flex-direction: column;
+
+          .company_info-box {
+               min-width: inherit;
+          }
+
+           .card-box {
+               form {
+                    padding: 0px 5px 20px 5px;
+               }
+          }
+     }
+}
+
+@media all and (max-width: 360px) {
+     .company_info {
+          .company_info-box {
+               margin: 0 5px 15px 5px;
+          }
+     }
+}

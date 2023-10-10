@@ -1,0 +1,25 @@
+<app-header></app-header>
+
+<app-tabs [link]="'/cabinet/personal-companies'"></app-tabs>
+
+<app-company-info-card 
+     *ngIf="currentCompany"
+     [currentCompany]="currentCompany"
+     (submit)="update($event)"
+></app-company-info-card>
+
+<section *ngIf="currentUser?.rules?.admin && currentUser?.rules?.canEditComments && comments.length > 0; else simpleComment" class="edit_comments">
+     <h3 class="section-title">Редактирование комментариев</h3>
+ 
+     <div class="container">
+          <app-comment-tree [comments]="comments" [user]="currentUser" [edit]="true"></app-comment-tree>
+     </div>
+</section>
+
+<ng-template #simpleComment>
+     <div class="container">
+          <app-comment-tree [comments]="comments" [user]="currentUser" [edit]="false"></app-comment-tree>
+     </div>
+</ng-template>
+
+<app-footer></app-footer>

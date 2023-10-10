@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<app-tabs [link]="'/cabinet/personal-companies'"></app-tabs>
+
+<div *ngIf="!loading">
+     <section class="companies" *ngIf="companies.length > 0; else noCompanies"> 
+          <app-company-card
+               *ngFor="let company of companies"
+               [link]="'/cabinet/personal-companies/'"
+               [canDelete]="currentUser?.rules?.admin" 
+               [showButtons]="true"
+               [company]="company"
+               (delete)="delete($event)"
+          >
+          ></app-company-card>
+     </section>
+
+     <ng-template #noCompanies>
+          <h3 class="no-companies">У Вас ещё нет компаний</h3>
+          <button 
+               type="button" 
+               class="btn btn-add-company"
+               routerLink="/cabinet/add-company"
+          >Добавить или создать компанию</button>
+     </ng-template>
+</div>

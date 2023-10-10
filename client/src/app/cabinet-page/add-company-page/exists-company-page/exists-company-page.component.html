@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<app-tabs [link]="'/cabinet/add-company'"></app-tabs>
+
+<section class="search" *ngIf="!selectedCompany; else confirmForm">
+     <h3 class="section-title">Найте свою компанию</h3>
+
+     <input type="search" class="search-field" placeholder="Введите название компании" #searchField (keydown)="search($event)">
+     <div class="search-results" *ngIf="searchField.value.length >= 1">
+          <div class="searched-company-box" *ngFor="let company of searchedCompanies">
+               <a (click)="selectCompany(company)">
+                    <p class="name-company">{{ company.name }}</p>
+                    <app-rating [pickedRating]="company.rating / (company.comments.length || 1)"></app-rating>
+                    <p class="address-company">{{ company.address[0]?.country }}</p>
+               </a>
+          </div>
+     </div>
+</section>
+
+<ng-template #confirmForm>
+     <div class="confirm_form">
+          <div class="card-box">
+               <form [formGroup]="confirmFormGroup" class="default" (submit)="send()">
+                    <label for="name">Ваше ФИО</label>
+                    <input 
+                         type="text" 
+                         name="name" 
+                         placeholder="Введите Ваше ФИО"
+                         class="field"
+                         formControlName="fio"
+                    >
+
+                    <label for="name">Ваш email</label>
+                    <input 
+                         type="text" 
+                         name="name" 
+                         placeholder="Введите Ваш email"
+                         class="field"
+                         formControlName="email"
+                    >
+
+                    <!-- <button type="button" class="btn select-avatar">Добавить подтверждающий документ</button> -->
+                    <button type="submit" class="btn btn-send" [disabled]="!confirmFormGroup.valid">Отправить на проверку</button>
+               </form>
+          </div>
+     </div>
+</ng-template>

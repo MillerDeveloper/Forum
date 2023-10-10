@@ -1,0 +1,24 @@
+<app-header></app-header>
+
+<form class="form" (submit)="login()" [formGroup]="loginFormGroup">
+     <input 
+          type="text" 
+          class="field" 
+          placeholder="Введите Ваш email" 
+          formControlName="email"
+          required
+          autocomplete="on"
+     >
+     <input 
+          type="password" 
+          class="field" 
+          placeholder="Введите Ваш пароль" 
+          formControlName="password"
+          required
+          autocomplete="on"
+     >
+
+     <button class="btn" type="submit" [disabled]="!loginFormGroup.valid">Войти</button> 
+</form> 
+
+<app-notifications></app-notifications>

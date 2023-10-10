@@ -1,0 +1,159 @@
+.personal_info {
+     .personal_info-block {
+          display: flex;
+          justify-content: space-around; 
+          margin-bottom: 50px;
+     }
+
+     h6 {
+          text-align: center;
+          font-size: 35px;
+          margin-bottom: 20px;
+          font-family: 'Prata', sans-serif;
+          font-weight: 300;
+     }
+
+     .openChangePassword {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .btn-close {
+               border-radius: 50%;
+               margin-right: 20px;
+               // margin-top: 10px;
+               padding: 0;
+               width: 58px;
+               height: 50px;
+               position: relative;
+               top: 12px;
+          }
+     }
+
+     .personal_info-box {
+          margin-right: 10px;
+     }
+     
+
+     .btn-action {
+          width: 100%;
+          height: 60px;
+          margin-top: 20px;
+          font-size: 20px;
+          min-width: 250px;
+     }
+
+     .card-box {
+          min-width: 500px;
+
+          form {
+               padding: 0 20px 20px 20px;
+
+               label {
+                    margin-top: 20px;
+                    display: block;
+               }
+
+               .field {
+                    display: block;
+                    border-radius: 5px;
+                    margin-top: 5px;
+                    width: 98%;
+                    height: 40px;
+                    font-weight: 100;
+                    padding-left: 5px;
+                    
+               }
+               
+               select {
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid #000;
+                    border-radius: 5px;
+                    margin-top: 5px;
+               }
+
+               .avatar {
+                    margin-top: 15px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    img {
+                         border-radius: 5px; 
+                         margin-right: 20px;
+                         max-width: 200px;
+                         height: auto;
+                    }
+
+                    .select-avatar {
+                         width: 100%;
+                    }
+               }
+          }
+          
+     }
+}
+
+
+@media all and (max-width: 991px) {
+     .personal_info {
+          .personal_info-block {
+               flex-direction: column;
+               align-items: center;
+               justify-content: center;
+               
+               .personal_info-box {
+                    margin-right: 0;
+               }
+          }
+     }
+
+     .save-or-update-box-title {
+          display: none;
+     }
+
+     .personal_info h6 {
+          margin-top: 20px;
+     }
+}
+
+@media all and (max-width: 600px) {
+     .personal_info {
+          .card-box {
+               min-width: inherit;
+          }
+
+          form {
+               display: block;
+               margin: 0 auto;
+          }
+
+          .personal_info-box {
+               margin-right: 0;
+               width: 100%;
+          }
+     }
+}
+
+@media all and (max-width: 450px) {
+     .personal_info {
+          .card-box {
+               form {
+                    .avatar {
+                         img {
+                              width: 100px;
+                         }
+                    }
+               }
+          }
+     }
+}
+
+@media all and (max-width: 350px) { 
+     .personal_info {
+          .select-avatar {
+               padding: 8px 5px;
+          }
+     } 
+}

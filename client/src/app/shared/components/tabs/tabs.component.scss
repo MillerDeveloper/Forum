@@ -1,0 +1,28 @@
+.tabs {
+     display: flex;
+     justify-content: space-between;
+
+     .tab {
+          width: 100%;
+          text-align: center;
+          background: #000;
+          height: 45px;
+          line-height: 45px;
+          border: 1px solid #000;
+          color: white;
+          cursor: pointer;
+     }
+
+     .tab.active {
+          background: #fff;
+          border: 1px solid #000;
+          color: black;
+          cursor: default;
+     }
+}
+
+@media all and (max-width: 768px) {
+     .tabs {
+          flex-direction: column;
+     }
+}

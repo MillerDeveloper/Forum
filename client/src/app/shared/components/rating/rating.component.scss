@@ -1,0 +1,48 @@
+.rating {
+     display: flex;
+     justify-content: flex-start;
+     align-items: center;
+
+     span {
+          display: block;
+          width: 35px;
+          height: 35px;
+          margin: 0 2px 0 0;
+     }
+
+     .star {
+          background: url('../../images/star.png') no-repeat;
+     }
+
+     .star-border {
+          background: url('../../images/star_border.png') no-repeat;
+     } 
+
+     .star-25 {
+          background: url('../../images/star-25.png') no-repeat;
+     } 
+
+     .star-50 {
+          background: url('../../images/star-50.png') no-repeat;
+     } 
+
+     .star-75 {
+          background: url('../../images/star-75.png') no-repeat;
+     } 
+
+     .star, .star-border {
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+          cursor: pointer;
+     }
+}    
+
+@media all and (max-width: 400px) {
+     .rating {
+          span {
+               width: 32px;
+               height: 32px;
+          }
+     }
+}

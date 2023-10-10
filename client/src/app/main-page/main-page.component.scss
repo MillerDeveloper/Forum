@@ -1,0 +1,128 @@
+/* about_project */
+
+.top_companies-box.card-view {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-wrap: wrap;
+}
+
+.about_project { 
+     background: url('../../assets/images/bg11.jpg') no-repeat;
+     background-size: cover;
+     padding: 10px 0;
+     margin-top: 10px;
+} 
+
+.about_project-box span.indent {
+     padding-left: 50px;
+     font-weight: 500;
+     font-size: 45px; 
+}
+
+
+.about_project-text { 
+     font-size: 30px;
+     line-height: 60px;
+}
+ 
+/*  */
+
+/* Top Companies */
+.top_companies {
+     padding-bottom: 30px;
+     .section-title {
+          margin-bottom: 0px;
+     }
+
+     .top_companies-subTitle {
+          font-size: 30px;
+          margin-top: 0;
+          font-weight: 100;
+          margin-bottom: 50px;
+          text-align: center;
+     }
+
+     .list-agencies {
+          width: 250px;
+          height: 30px;
+          display: block;
+          margin: 0 auto;
+          text-align: center;
+          line-height: 30px;
+          margin-top: 40px;
+     }
+}
+
+.top_companies_loadMore {
+     margin-top: 15px;
+}
+
+.no-companies {
+     text-align: center;
+     font-size: 30px;
+     margin-top: 0;
+}
+
+@media all and (max-width: 1300px) {
+     .about_project-text {
+          font-size: 26px;
+     }
+}
+
+@media all and (max-width: 991px) {
+     .about_project-text {
+          font-size: 24px;
+
+          span.indent {
+               font-size: 35px;
+          }
+     }
+}
+
+@media all and (max-width: 650px) {
+     .about_project-text {
+          font-size: 22px;
+
+          span.indent {
+               font-size: 33px;
+               padding-left: 15px;
+          }
+     }
+}
+
+@media all and (max-width: 450px) {
+     .about_project-text {
+          font-size: 18px;
+          line-height: 45px;
+
+          span.indent {
+               font-size: 28px;
+               padding-left: 10px;
+          }
+     }
+
+     .top_companies {
+          .top_companies-subTitle {
+               font-size: 16px;
+               margin-bottom: 20px;
+          }
+     }
+}
+
+@media all and (max-width: 360px) {
+     .header_content {
+          .title {
+               font-size: 55px;
+          }
+     }
+
+     .about_project-text {
+          font-size: 18px;
+
+          span.indent {
+               font-size: 28px;
+               padding-left: 10px;
+          }
+     }
+}

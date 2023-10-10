@@ -1,0 +1,231 @@
+<app-header></app-header>
+
+<section class="card_info" *ngIf="company">
+     <div class="container">
+          <div class="card_info-box">
+               <div class="card_info-desc">
+                    <h1 class="name-company">{{ company.name }}</h1>  
+                    <p class="description">
+                         {{ company.description }} 
+                    </p>
+
+                    <div class="can-trust" #trustBox *ngIf="comments.length">
+                         <h2 class="can-trust-title">Доверяют ли люди компании <span>{{ company?.name }}</span>?</h2>
+                         <div class="trust-bar" [ngStyle]="{'width': trustBox.offsetWidth}">
+                              <div class="negative" #negative *ngIf="negativeComments?.length > 0" [ngStyle]="{'width': trustBoxNegativeWidth + '%'}">
+                                   <small class="trust-bar-title" *ngIf="trustBoxNegativeWidth > 6; else smallTrustBar">
+                                        {{ trustBoxNegativeWidth }}%
+                                        <br> 
+                                        <span *ngIf="negative.offsetWidth > 90; else smallNegativeTitle">не доверяют</span> 
+                                        <ng-template #smallNegativeTitle>
+                                             <span class="trust-icon">&times;</span>  
+                                        </ng-template>
+                                   </small>
+                                   <ng-template #smallTrustBar>
+                                       <small class="small-trust-icon">X</small>
+                                       <small class="small-trust-icon">-</small>
+                                   </ng-template>
+                                   <div class="negative-bar"></div>
+                              </div>
+                              <div class="positive" #positive *ngIf="positiveComments?.length > 0" [ngStyle]="{'width': trustBoxPositiveWidth + '%'}">
+                                   <small class="trust-bar-title" *ngIf="trustBoxPositiveWidth > 6; else smallTrustBar">
+                                        {{ trustBoxPositiveWidth }}%
+                                        <br> 
+                                        <span *ngIf="positive.offsetWidth > 90; else smallPositiveTitle">доверяют</span>
+                                        <ng-template #smallPositiveTitle>
+                                             <span class="trust-icon">&#10003;</span>
+                                        </ng-template>
+                                   </small>          
+                                   <ng-template #smallTrustBar>
+                                        <small class="small-trust-icon">&#10003;</small>
+                                        <small class="small-trust-icon">-</small>
+                                    </ng-template>                          
+                                   <div class="positive-bar"></div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <app-rating 
+                         [pickedRating]="company.rating / (company.comments.length || 1)" 
+                         [pick]="false"
+                    ></app-rating>
+
+                    <div class="visitors">
+                         <p>Просмотров: </p>
+                         <span>{{ company.visitorsCount }}</span>
+                    </div>
+               </div>
+
+               <div class="card_info-table">
+                    <div class="card-box card-info-tableBox">
+                         <ul class="card-list">
+                              <li *ngIf="company.yearOfFoundation">
+                                   <span class="title">Год основания:</span>
+                                   <span class="subject">{{ company.yearOfFoundation }}</span>
+                              </li>
+
+                              <li *ngIf="company.licenseNo">
+                                   <span class="title">Лицензия  №:</span>
+                                   <span class="subject">{{ company.licenseNo }}</span>
+                              </li>
+
+                              <li *ngIf="company.director">
+                                   <span class="title">Директор:</span>
+                                   <span class="subject">{{ company.director }}</span>
+                              </li>
+
+                              <li *ngIf="company.email">
+                                   <span class="title">Email:</span>
+                                   <span class="subject">{{ company.email }}</span>
+                              </li>
+
+                              <li *ngIf="company.site">
+                                   <span class="title">Web сайт:</span>
+                                   <span class="subject">{{ company.site }}</span>
+                              </li>
+
+                              <li *ngIf="company.address?.length > 0">
+                                   <span class="title">Адресс:</span>
+                                   <span class="subject address-box">
+                                        <span *ngFor="let address of company.address" class="country">
+                                             {{ address.country }}: <br>
+                                             <span *ngFor="let city of address.cities" class="city">
+                                                  {{ city.city}}
+                                                  <span *ngFor="let addrs of city.addresses" class="address">
+                                                       {{ addrs }}<span class="comma">,</span>
+                                                  </span>
+                                             </span>
+                                        </span>
+                                   </span>
+                              </li>
+
+                              <li *ngIf="company.phones?.length > 0">
+                                   <span class="title">Телефон:</span>
+                                   <div class="subject" *ngFor="let phone of company.phones">
+                                        <span>
+                                             {{ phone.phone }}
+                                        </span>
+                                   </div>
+                              </li> 
+                         </ul>
+                    </div>
+
+                    <div class="card-box review-block">
+                         <div class="review-box"> 
+                              <small class="review-box-title">Позитивных отзывов: </small> <br>
+                              <small class="review-box-value">{{ positiveComments?.length }}</small>
+                         </div>
+                         
+                         <div class="review-box"> 
+                              <small class="review-box-title">Негативных отзывов: </small> <br>  
+                              <small class="review-box-value">{{ negativeComments?.length }}</small>
+                         </div> 
+     
+                         <div class="review-box"> 
+                              <small class="review-box-title">Всего отзывов: </small> <br>
+                              <small class="review-box-value">{{ positiveComments?.length + negativeComments?.length }}</small>
+                         </div>
+                    </div>
+
+                    <div class="card-box representative-box">
+                         <p>Вы представитель компании?</p>
+                         <button type="button" class="btn" routerLink="/cabinet/add-company/exists">Подать заявку</button>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+
+<section class="comments" *ngIf="company" #commentsFormSection>
+     <div class="container">
+          <h2 class="comments-title">Оставить отзыв</h2> 
+
+          <form class="comments_form default" [formGroup]="commentsControl" (submit)="submitComment()">
+               <div class="comments_form-left">
+                    <label for="name">Ваше имя</label>
+                    <input 
+                         type="text" 
+                         placeholder="Введите своё имя" 
+                         class="field"
+                         formControlName="name"
+                    >
+ 
+                    <p class="comments_form-replyUser" *ngIf="replyForComment">Ответ -> {{ replyForComment.nameUser }} <span class="close" (click)="replyForComment = null">x</span></p>
+
+                    <app-rating  
+                         *ngIf="!replyForComment"
+                         [pick]="true"
+                         (picked)="this.commentsControl.patchValue({pickedRating: $event + 1})"
+                    ></app-rating> 
+
+                    <div *ngIf="currentUser?.rules?.moderator">
+                         <label for="date">Дата</label>
+                         <input type="date" max="2050-12-31" name="date" class="date-picker field" formControlName="dateComment">
+                    </div>
+
+                    <label for="country">Город</label>
+                    <input 
+                         type="text" 
+                         placeholder="Введите ваш город" 
+                         class="field"
+                         formControlName="city" 
+                    >
+
+                    <div class="footnotes">
+                         <p class="footnotes-text">
+                              Комментарии помеченные <span class="red">красным цветом</span> означают комментарии одного и того же человека.
+                         </p>
+                    </div>
+               </div>
+
+               <div class="comments_form-right">
+                    <label for="text">Ваш отзыв</label>
+                    <textarea 
+                         cols="30" 
+                         rows="4" 
+                         class="field-textarea" 
+                         placeholder="Введите Ваш отзыв..."
+                         formControlName="text"
+                    ></textarea>
+
+                    <button type="submit" class="btn" [disabled]="!commentsControl.valid">Оставить отзыв</button>
+               </div>
+          </form>
+
+          <div class="comments-container" #commentsSection>  
+               <app-comment-tree 
+                    [canDelete]="currentUser?.rules?.admin" 
+                    [comments]="comments" 
+                    [user]="currentUser" 
+                    [edit]="false" 
+                    (appeal)="appeal($event)"
+               ></app-comment-tree>
+          </div>
+
+          <app-pagination
+               *ngIf="countComments"
+               [countPages]="countComments / 5"
+               (changePage)="changePage($event)"
+               (scrollToTop)="scrollToTop()"
+          ></app-pagination>
+     </div> 
+</section>
+
+<app-footer></app-footer>
+
+<section class="modal" *ngIf="appealComment">
+     <div class="modal_box">
+          <div class="modal_head">
+               <h6 class="modal_head-title">Обжаловать комментарий</h6> 
+               <span class="close" (click)="this.appealComment = null">x</span>
+          </div>
+          <div class="modal_content">
+               <p>
+                    Чтобы обжаловать этот комментарий напишите нам на почту
+                    <span class="email">z.zakordonom@gmail.com</span>
+               </p>
+          </div>
+     </div>
+</section> 
+
+<app-notifications></app-notifications>

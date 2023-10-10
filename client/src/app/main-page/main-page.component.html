@@ -1,0 +1,38 @@
+<app-header [isHomePage]="true"></app-header> 
+
+<section class="section top_companies" id="top"> 
+     <h2 class="section-title">ТОП-5 агентств</h2>
+     <p class="top_companies-subTitle">Сформирован на основании отзывов</p> 
+
+     <div class="container">
+          <div class="top_companies-box card-view">
+               <app-company-card 
+                    *ngFor="let company of companies"
+                    [company]="company"
+                    [cardView]="true"
+                    [link]="'/agencies/'"
+               ></app-company-card> 
+               <!-- <app-ads [place]="'topAgancies'"></app-ads>  -->
+          </div>
+     </div>
+
+     <a class="list-agencies btn" routerLink="/agencies">Список всех агенств</a>
+</section>
+
+<section class="section about_project" id="about"> 
+     <h2 class="section-title">О проекте</h2>
+
+     <div class="container">
+          <div class="about_project-box">
+               <p class="about_project-text"> 
+                    <span class="indent">К</span>ак всем нам известно, за последние года стремительно растет трудовая миграция <em>украинцев в страны Европы.</em> <br>
+                    <span class="indent">К</span> сожалению, с увеличением спроса – увеличивается и количество не порядочных компаний, которые стремятся нажиться на бедах сограждан. <br> 
+                    <span class="indent">Ц</span>елью нашего портала выступает желание защитить наших граждан и уберечь от горького опыта, естественно, для этого мы разработали максимальную прозрачность отзывов людей. <br> 
+                    <span class="indent">М</span>ы осознанно запрещаем удалять отзывы, более того каждый человек может поделиться своим опытом, и даже, если компания еще не зарегистрирована на сайте, Вы можете самостоятельно создать данные о ней. <br> 
+                    <span class="indent">М</span>ы просим оставлять отзывы правдивые, избегая нецензурную лексику, давайте уважать друг друга.
+               </p>
+          </div>
+     </div>
+</section>
+
+<app-footer></app-footer>

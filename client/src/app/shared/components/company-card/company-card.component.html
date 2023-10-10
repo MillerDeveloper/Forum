@@ -1,0 +1,56 @@
+
+<article class="company" [ngClass]="{'card-view': cardView, 'table-view': !cardView}"> 
+     <a class="company-box card-box" routerLink="{{link}}{{company._id}}" *ngIf="cardView; else tableView">
+          <div class="avatar">
+               <img [src]="company.logo | serverFiles" [alt]="'Логотип компании ' + company.name">
+               <p class="name-company">{{ company.name }}</p>
+          </div>
+
+          <app-rating [pickedRating]="company.rating / (company.comments.length || 1)"></app-rating>
+
+          <div class="review-block">
+               <div class="review-box"> 
+                    <small>Позитивных отзывов: </small> <br>
+                    <small>{{ positiveComments?.length }}</small>
+               </div>
+               
+               <div class="review-box"> 
+                    <small>Негативных отзывов: </small> <br>  
+                    <small>{{ negativeComments?.length }}</small>
+               </div> 
+
+               <div class="review-box"> 
+                    <small>Всего отзывов: </small> <br>
+                    <small>{{ positiveComments?.length + negativeComments?.length }}</small>
+               </div>
+          </div>
+     </a>
+
+     <ng-template #tableView>
+          <a class="company-box card-box" routerLink="{{link}}{{company._id}}">
+               <div class="avatar">
+                    <img [src]="company.logo | serverFiles" [alt]="'Логотип компании ' + company.name">
+                    <p class="name-company">{{ company.name }}</p>
+               </div>
+
+               <app-rating [pickedRating]="company.rating / (company.comments.length || 1)"></app-rating>
+      
+               <div class="review-block">
+                    <div class="review-box">
+                         <small class="review-box-title">Просмотров: </small>
+                         <small class="review-box-value">{{ company?.visitorsCount || 0 }}</small>
+                    </div>
+
+                    <div class="review-box">
+                         <small class="review-box-title">Всего комментариев: </small>
+                         <small class="review-box-value">{{ countComments }}</small>
+                    </div>
+               </div>
+
+               <div *ngIf="showButtons">
+                    <button type="button" class="btn btn-action delete" *ngIf="canDelete" (click)="$event.preventDefault(); delete.emit(company); $event.stopPropagation();">Удалить</button>
+                    <button type="button" class="btn btn-action" routerLink="/agencies/{{company._id}}" (click)="$event.preventDefault();">></button>
+               </div>
+          </a>
+     </ng-template>
+</article> 

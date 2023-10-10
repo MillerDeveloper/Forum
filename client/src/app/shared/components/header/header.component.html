@@ -1,0 +1,91 @@
+<header class="header" [ngClass]="{'home-page': isHomePage}">
+     <div class="header-box" [ngClass]="{'opened': viewMenu}">
+          <div class="container">
+               <div class="header_top">
+                    <div class="logo" (click)="viewMenu = !viewMenu">
+                         <p>Zarobitchany <small>za kordonom</small></p>
+
+                         <div class="burger-button"></div>
+                    </div>
+
+                    <nav class="navbar" *ngIf="viewMenu">
+                         <ul class="navbar-list horizontal-list">
+                              <li><a routerLink="/" fragment="about">О проекте</a></li>
+                              <li><a routerLink="/">Главная</a></li>
+                              <li><a routerLink="/" fragment="top">ТОП-5 агентств</a></li>
+                              <li><a routerLink="/agencies">Список всех агентств</a></li>
+                         </ul>
+                    </nav>
+
+
+                    <div *ngIf="viewMenu" class="header_top_actions"> 
+                         <div class="contacts">
+                              <small>Служба поддержки</small>
+                              <a href="mailto: z.zakordonom@gmail.com">z.zakordonom@gmail.com</a>
+                         </div>
+
+                         <div class="header_top_auth" *ngIf="!currentUser; else authenticated">
+                              <a routerLink="/auth/login" class="login">Логин</a>
+                              <a routerLink="/auth/register"><button type="button" class="register btn">Регистрация</button></a>
+                         </div>
+                         <ng-template #authenticated>
+                              <div class="header_top_auth">
+                                   <a routerLink="/cabinet/personal-companies" class="login">{{ currentUser.name }}</a>
+                                   <a (click)="logOut()"><button type="button" class="register btn">Выйти</button></a>
+                              </div>
+                         </ng-template>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+     <div class="container">
+          <div class="header_content" *ngIf="isHomePage">
+               <div class="header_content-top">
+                    <h1 class="title">
+                         Не дайте обмануть<span class="grey">,</span> <br>
+                         Не будьте обмануты<span class="grey">.</span>
+                    </h1>
+
+                    <!-- <app-ads [place]="'header'"></app-ads>  -->
+                    <!-- <img src="../../../../assets/images/work29.jpg" alt="Блок изображения"> -->
+               </div>
+
+               <div class="visitors">
+                    <p class="visitors-title">За сегодня <span>{{ visitors.today }}</span> посетителей.</p>
+                    <p class="visitors-title">За всё время <span>{{ visitors.total }}</span> посетителей.</p>
+               </div>
+
+               <div class="search">
+                    <input 
+                         type="search" 
+                         class="search-field" 
+                         placeholder="Введите название компании, описание, сайт, email, лицензию, или директора" 
+                         #searchField 
+                         (input)="search($event)"
+                    >
+                    <div class="search-results">
+                         <div class="searched-company-box" *ngFor="let company of searchedCompanies">
+                              <a routerLink="/agencies/{{company._id}}">
+                                   <p class="name-company">{{ company.name }}</p>
+                                   <app-rating [pickedRating]="company.rating / (company.comments.length || 1)"></app-rating>
+                                   <p class="address-company">{{ company.address[0]?.country }}</p>
+                              </a>
+                         </div>
+                    </div>                    
+
+                    <div class="no-search-result" *ngIf="searchField.value.length >= 1 && searchedCompanies.length === 0">
+                         <div class="searched-company-box">
+                              <p>
+                                   К сожалению по Вашему запросу компаний не найдено. <br> 
+                                   Предлагаем создать её и оставить оставить Ваш отзыв. Помогите другим не быть обманутыми.
+                              </p>
+                              <button type="button" class="btn" routerLink="/auth/register">Создать компанию самому</button>
+                         </div> 
+                    </div>
+               </div>
+
+               <a class="list-agencies btn" routerLink="/agencies" *ngIf="searchField.value.length === 0">Список всех агенств</a>
+          </div>
+     </div>
+</header>

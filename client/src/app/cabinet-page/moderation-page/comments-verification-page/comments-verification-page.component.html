@@ -1,0 +1,51 @@
+<app-header></app-header>
+<app-tabs [link]="'/cabinet/moderation'"></app-tabs>
+
+<section class="moderation">
+     <article class="container" *ngIf="notVerified.length > 0; else allVerified">
+          <!-- <app-comment-tree
+               [comments]="comments" 
+          ></app-comment-tree> -->
+          <!-- <a class="moderation-box card-box" *ngFor="let item of notVerified; index as i;" routerLink="/agencies/{{item.idCompany}}">
+               <div class="fio">
+                    {{ item.nameUser }}
+               </div>
+
+               <div class="text">
+                    {{ item.text }}
+               </div>
+
+               <div class="date">
+                    {{ item?.date | date: 'dd.MM.yyyy hh:mm:ss' }}
+               </div>
+
+               <div class="buttons">
+                    <button class="btn" type="button" (click)="allowComment(item, i, $event)">+</button> 
+                    <button class="btn" type="button" (click)="disAllowComment(item, i, $event)">-</button>
+               </div>
+          </a>
+          <div class="comments-reply" *ngIf="comment?.replies?.length > 0">
+               <app-comment-tree 
+                    [comments]="comment.replies" 
+                    [rootComment]="comment.root ? comment : rootComment"
+                    [edit]="edit"
+                    [user]="user"
+                    [isReply]="true"
+               ></app-comment-tree> 
+          </div> -->
+
+          <app-comment-tree
+               *ngIf="notVerified && currentUser"
+               [comments]="notVerified" 
+               [edit]="true"
+               [user]="currentUser"
+               [canDelete]="currentUser.rules.admin"
+               [config]="{
+                    showCompanyInfo: true
+               }"
+          ></app-comment-tree>
+     </article>
+     <ng-template #allVerified>
+          <h3 class="all-verified section-title">Ничего нет для модерации</h3>
+     </ng-template>
+</section>

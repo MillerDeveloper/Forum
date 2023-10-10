@@ -1,0 +1,127 @@
+<article *ngFor="let comment of comments;" itemscope itemtype="http://schema.org/Comment">
+     <div class="company-info" *ngIf="config?.showCompanyInfo">
+          <a class="name-company" [routerLink]="'/agencies/' + comment?.idCompany?._id">{{ comment?.idCompany?.name }}</a>
+     </div>
+     <div class="comment-box" [ngClass]="{'repeated': comment.isNotFirstUserComment}">
+          <div class="comment_head">  
+               <div class="comment-author">
+                    <img [src]="comment?.user?.logo | serverFiles" alt="Без аватара">
+                    
+                    <p class="author-name" *ngIf="!edit; else editName">
+                         <span itemprop="author" itemscope itemtype="https://schema.org/Person">{{ comment.nameUser }}</span> 
+                         <small *ngIf="comment.replyForName">Ответ -> {{ comment.replyForName }} </small> 
+                         <span itemprop="contentLocation" *ngIf="comment.userData?.city">({{ comment.userData?.city?.trim() }})</span>
+                    </p>
+                    <ng-template #editName>
+                         <input class="field" type="text" [value]="comment.nameUser" #name (input)="comment.nameUser = name.value">
+                    </ng-template> 
+               </div>
+
+               <div class="comment-date">
+                    <p *ngIf="!edit; else editComment" itemprop="dateCreated">{{ comment.date | date: 'dd.MM.yyyy' }}</p>
+                    <ng-template #editComment>
+                         <input itemprop="dateCreated" class="field" type="date" [value]="comment.date | date: 'yyyy-MM-dd'" #date (input)="comment.date = date.value">
+                         <input type="checkbox" [checked]="comment.isNotFirstUserComment" (change)="comment.isNotFirstUserComment = !comment.isNotFirstUserComment">
+                    </ng-template>
+               </div>
+          </div>
+
+          <div class="comment_content">
+               <p class="comment-subject" *ngIf="!edit || !user?.rules?.admin; else editText" itemprop="comment"> 
+                    {{ comment.text }}
+               </p>
+               <ng-template #editText>
+                    <textarea [value]="comment.text" class="field-textarea" #text (input)="comment.text = text.value"></textarea>
+               </ng-template>
+               
+
+               <div class="comment_content_bottom">  
+                    <div *ngIf="!isReply">
+                         <app-rating [pickedRating]="comment.pickedRating" *ngIf="!edit || isReply; else editRating;" (picked)="comment.pickedRating = $event"></app-rating>
+                         <ng-template #editRating> 
+                              <app-rating 
+                                   [pick]="true" 
+                                   [pickedRating]="comment.pickedRating" 
+                                   #rating 
+                                   (picked)="comment.oldRating = comment.pickedRating; comment.pickedRating = $event + 1"
+                              ></app-rating>
+                         </ng-template>
+                    </div>
+ 
+                    <div class="comment_buttons" *ngIf="!edit; else saveButton">
+                         <button 
+                              class="btn" 
+                              type="button" 
+                              (click)="replyTo(comment, comment)"  
+                         >
+                              Ответить
+                         </button>
+                         <button 
+                              class="btn hide" 
+                              type="button" 
+                              *ngIf="user?.rules?.canEditComments && user?.companies?.includes(comment?.idCompany) || user?.companies?.includes(rootComment?.idCompany)"
+                              (click)="hide(comment, rootComment || comment)"  
+                         >
+                              Скрыть
+                         </button>
+                         <button 
+                              type="button"
+                              class="btn appeal"
+                              (click)="appeal.emit(comment)"
+                         >
+                              Обжаловать
+                         </button>
+                         <button 
+                                   class="btn hide" 
+                                   type="button" 
+                                   *ngIf="user?.rules?.admin && user?.companies?.includes(comment?.idCompany) || user?.companies?.includes(rootComment?.idCompany)"
+                                   (click)="deleteComment(comment, rootComment || comment)"  
+                              >
+                                   Удалить
+                              </button>
+                    </div>
+
+                    <ng-template #saveButton>
+                         <div class="comment_buttons">
+                              <button 
+                                   class="btn" 
+                                   type="button" 
+                                   (click)="saveComment(comment, rootComment || comment)"  
+                              >
+                                   Сохранить
+                              </button>
+
+                              <button 
+                                   class="btn" 
+                                   type="button" 
+                                   *ngIf="!isReply"
+                                   (click)="allowComment(comment, rootComment || comment, index, $event)"  
+                              >
+                                   Одобрить
+                              </button>
+
+                              <button 
+                                   class="btn" 
+                                   type="button" 
+                                   *ngIf="canDelete"
+                                   (click)="deleteComment(comment, rootComment || comment)"  
+                              >
+                                   Удалить
+                              </button>
+                         </div>
+                    </ng-template> 
+               </div>
+          </div> 
+     </div>
+
+     <div class="comments-reply" *ngIf="comment?.replies?.length > 0">
+          <app-comment-tree 
+               [comments]="comment.replies" 
+               [rootComment]="comment.root ? comment : rootComment"
+               [edit]="edit"
+               [user]="user"
+               [isReply]="true"
+               [canDelete]="canDelete"
+          ></app-comment-tree> 
+     </div>
+</article>

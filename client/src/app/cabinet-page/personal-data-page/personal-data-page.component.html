@@ -1,0 +1,108 @@
+<app-header></app-header>
+
+<app-tabs [link]="'/cabinet/personal-data'"></app-tabs>
+
+<section class="personal_info" *ngIf="!loading">
+     <div class="personal_info-block container">
+          <div class="personal_info-box">
+               <h6>Котактные данные</h6>
+               <div class="card-box">
+                    <form [formGroup]="contactFormGroup">
+                         <label for="name">Ваше имя</label>
+                         <input 
+                              type="text" 
+                              name="name" 
+                              placeholder="Введите Ваше имя"
+                              class="field"
+                              formControlName="name"
+                         >
+
+                         <label for="email">Ваш email</label>
+                         <input 
+                              type="email" 
+                              name="email" 
+                              placeholder="Введите Ваш email"
+                              class="field"
+                              formControlName="email"
+                         >
+
+                         <!-- <label for="phone">Ваш номер телефона</label>
+                         <input 
+                              type="phone" 
+                              name="phone" 
+                              placeholder="Введите номер телефона"
+                              class="field"
+                              formControlName="phone"
+                         > -->
+
+                         <!-- <label for="city">Ваш город</label>
+                         <select name="city" formControlName="city">
+                              <option value="" selected>Не выбран</option>
+                              <option value="Харьков">Харьков</option>
+                              <option value="Киев">Киев</option>
+                              <option value="Львов">Львов</option>
+                         </select> -->
+
+                         <div class="avatar">
+                              <img [src]="currentUser.logo | serverFiles" alt="" *ngIf="currentUser.logo">    
+                              <input type="file" class="file-field" #fileField name="avatar" (change)="uploadImage($event)">
+                              <button type="button" class="btn select-avatar" (click)="fileField.click()">Изменить аватар</button>
+                         </div>
+                    </form>
+               </div>
+          </div>
+
+          <div class="personal_info-box"> 
+               <h6 class="save-or-update-box-title">{{ changePassword ? 'Изменить пароль' : 'Сохранить данные' }}</h6>
+               <div class="card-box"  *ngIf="changePassword">
+                    <form [formGroup]="passwordFormGroup">
+                         <label for="oldPassword">Ваше старый пароль</label>
+                         <input 
+                              type="password" 
+                              name="oldPassword" 
+                              placeholder="Введите Ваш старый пароль"
+                              class="field"
+                              formControlName="oldPassword"
+                              autocomplete="on"
+                         >
+
+                         <label for="password">Ваш новый пароль</label>
+                         <input 
+                              type="password" 
+                              name="password" 
+                              placeholder="Введите Ваш новый пароль"
+                              class="field"
+                              formControlName="password"
+                              autocomplete="off"
+                         >
+
+                         <label for="repeatedPassword">Повторите новый пароль</label>
+                         <input 
+                              type="password" 
+                              name="repeatedPassword" 
+                              placeholder="Повторите Ваш новый пароль"
+                              class="field"
+                              formControlName="repeatedPassword"
+                              autocomplete="off"
+                         >
+                    </form>
+               </div>
+
+               <div [ngClass]="{'openChangePassword': changePassword}">
+                    <button type="button" class="btn btn-action" *ngIf="!changePassword; else closeChangePassword" (click)="changePassword = true">Изменить пароль</button>
+                    <ng-template #closeChangePassword>
+                         <button type="button" class="btn btn-close" (click)="changePassword = false">x</button>
+                    </ng-template>
+
+                    <button 
+                         type="button" 
+                         class="btn btn-action" 
+                         (click)="save()"
+                         [disabled]="!contactFormGroup.valid || changePassword && !passwordFormGroup.valid"
+                    >Сохранить</button>
+               </div>
+          </div>
+     </div>
+</section>
+
+<app-footer></app-footer>

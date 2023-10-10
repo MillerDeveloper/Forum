@@ -1,0 +1,15 @@
+<div class="rating" *ngIf="pickedRating !== null && !pick">
+     <span *ngFor="let rt of rating" class="{{rt}}"></span>
+</div>
+
+<div class="rating" *ngIf="pick"> 
+     <div *ngFor="let rt of rating; index as i;" >
+          <span
+               (click)="pickRating(i, true)"
+               class="{{rt}}"
+          ></span>
+     </div>
+</div>
+
+<!-- (mouseenter)="pickRating(i, false, false)" 
+(mouseout)="pickRating(i, false, true)"  -->

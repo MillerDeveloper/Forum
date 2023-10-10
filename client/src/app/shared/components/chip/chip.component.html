@@ -1,0 +1,5 @@
+<div class="chip" *ngIf="chip?.name || chip.phone">
+     {{ chip.name || chip.phone }}
+ 
+     <button type="button" class="delete" *ngIf="canDelete" (click)="delete.emit(chip)">x</button>
+</div> 

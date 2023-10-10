@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: /cabinet/
+Disallow: /auth/
+Disallow: *utm=
+
+User-agent: GoogleBot
+Disallow: /cabinet/
+Disallow: /auth/
+Disallow: *utm=
+
+User-agent: Yandex
+Disallow: /cabinet/
+Disallow: /auth/
+Disallow: *utm= 
+ 
+Sitemap: *SITE*/assets/sitemap.xml
+Host: *SITE*

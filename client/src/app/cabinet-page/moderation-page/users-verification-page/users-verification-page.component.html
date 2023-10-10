@@ -1,0 +1,25 @@
+<app-header></app-header>
+<app-tabs [link]="'/cabinet/moderation'"></app-tabs>
+
+<div class="moderation">
+    <div class="container">
+        <a class="moderation-box card-box" *ngFor="let user of users; index as i;">
+            <div class="fio">
+                {{ user.name }}
+            </div>
+
+            <div class="text">
+                {{ user.email }}
+            </div>
+
+            <div class="date">
+                {{ user?.dateCreate | date: 'dd.MM.yyyy hh:mm:ss' }}
+            </div> 
+
+            <div class="buttons">
+                <button class="btn" type="button" (click)="allowUser(user, i, $event)">+</button> 
+                <button class="btn" type="button" (click)="disAllowUser(user, i, $event)">-</button>
+            </div>
+        </a>
+    </div>
+</div>

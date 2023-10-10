@@ -1,0 +1,185 @@
+<section class="company_info">
+     <div class="company_info-box">
+          <div class="card-box">
+               <form [formGroup]="companyFormGroup" class="default">
+                    <label for="name">Название вашей компании</label>
+                    <input 
+                         type="text" 
+                         name="name" 
+                         placeholder="Введите название Вашей компании"
+                         class="field"
+                         formControlName="name"
+                    >
+
+                    <label for="name">Web-сайт</label>
+                    <input 
+                         type="text" 
+                         name="name" 
+                         placeholder="Введите web-сайт"
+                         class="field"
+                         formControlName="site"
+                    >
+
+                    <label for="name">Директор компании</label>
+                    <input 
+                         type="text" 
+                         name="name" 
+                         placeholder="Введите директора Вашей компании"
+                         class="field"
+                         formControlName="director"
+                    >
+
+                    <div class="add_item">
+                         <label for="tag">Теги вашей компании</label>
+                         <!-- <div class="add_item-field"> -->
+                         <input 
+                              type="text" 
+                              name="tag" 
+                              placeholder="Введите теги для поиска компании"
+                              class="field"
+                              formControlName="tags"
+                         >
+                    </div>
+
+                    <div class="add_item">
+                         <label for="phone">Телефоны Вашей компании</label>
+                         <!-- <div class="add_item-field"> -->
+                              <input 
+                                   type="phone" 
+                                   name="phone" 
+                                   placeholder="Введите телефон(ы) через пробел"
+                                   class="field"
+                                   formControlName="phones"
+                              >
+
+                              <!-- <button 
+                                   type="button" 
+                                   class="btn btn-add-tag" 
+                                   [disabled]="!companyFormGroup.value.phones || companyFormGroup.value.phones.length < 6"
+                                   (click)="addPhone()"
+                              >+</button>
+                         </div> -->
+
+                         <!-- <div class="phones">
+                              <app-chip 
+                                   *ngFor="let phone of phones" 
+                                   [chip]="phone"  
+                                   (delete)="deletePhone($event)"
+                              ></app-chip>
+                         </div> -->
+                    </div>
+
+                    <label for="description">Описание Вашей компании</label>
+                    <textarea 
+                         name="description" 
+                         placeholder="Введите описание Вашей компании" 
+                         class="field-textarea" 
+                         formControlName="description"
+                         rows="5"
+                    ></textarea> 
+
+                    <div class="avatar">
+                         <img [src]="currentCompany?.logo | serverFiles" alt="" *ngIf="currentCompany?.logo">    
+                         <input type="file" class="file-field" #fileField name="avatar" (change)="uploadImage($event)" formControlName="avatar">
+                         <button type="button" class="btn select-avatar" (click)="fileField.click()">Изменить аватар</button>
+                    </div>
+               </form>
+          </div>
+
+          <button 
+               type="button" 
+               class="btn btn-save" 
+               [disabled]="!companyFormGroup.valid"
+               (click)="submitForm()"
+          >Сохранить</button>
+     </div>
+
+     <div class="company_info-box">
+          <div class="card-box">
+               <form [formGroup]="companyFormGroup" class="default">
+                    <label for="name">Год основания</label>
+                    <input 
+                         type="number" 
+                         name="name" 
+                         placeholder="Введите год основания"
+                         class="field"
+                         formControlName="yearOfFoundation"
+                    >
+
+                    <label for="name">№ лицензии</label>
+                    <input 
+                         type="text" 
+                         name="name" 
+                         placeholder="Введите № лицензии"
+                         class="field"
+                         formControlName="licenseNo"
+                    >
+
+                    <label for="name">Email компании</label>
+                    <input 
+                         type="email" 
+                         name="name" 
+                         placeholder="Введите Email компании"
+                         class="field"
+                         formControlName="email"
+                    >
+               </form>
+          </div>
+
+          <div class="card-box address-card">
+               <form [formGroup]="addressFormGroup" class="default">
+                    <label for="country">Страна где находится Ваша компания</label>
+                    <input 
+                         type="text" 
+                         name="country" 
+                         placeholder="Введите страну где находится офис"
+                         class="field"
+                         formControlName="country"
+                    >
+
+                    <label for="city">Город где находится Ваша компания</label>
+                    <input 
+                         type="text" 
+                         name="city" 
+                         placeholder="Введите страну где находится офис"
+                         class="field"
+                         formControlName="city" 
+                    >
+
+                    <div class="add_item">
+                         <label for="name">Адрес Вашего офиса</label>
+                         <!-- <div class="add_item-field"> -->
+                              <input 
+                                   type="text" 
+                                   name="name" 
+                                   placeholder="Введите адрес Вашего офиса"
+                                   class="field"
+                                   formControlName="address"
+                              >
+
+                              <!-- <button 
+                                   type="button" 
+                                   class="btn"
+                                   [disabled]="!addressFormGroup.valid"
+                                   (click)="addAddress()"
+                              >+</button> -->
+                         <!-- </div> -->
+                    </div>
+<!--  
+                    <div class="address">
+                         <div *ngFor="let country of addresses" class="address-box">
+                              <app-chip [chip]="{name: country.country}" [canDelete]="false"></app-chip> 
+                              <span *ngFor="let city of country.cities" class="city">
+                                   <br>
+                                   <app-chip [chip]="{name: city.city}" [canDelete]="false"></app-chip> 
+
+                                   <span *ngFor="let address of city.addresses"> 
+                                        <app-chip [chip]="{name: address}" [canDelete]="true" (delete)="deleteAddress($event)"></app-chip>
+                                   </span>
+                              </span>
+                         </div>
+                    </div> -->
+               </form>
+          </div>
+     </div>
+</section>

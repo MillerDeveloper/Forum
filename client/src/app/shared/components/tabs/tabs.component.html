@@ -1,0 +1,5 @@
+<section class="tabs">
+     <div class="tab" [ngClass]="{'active': tag.active}" *ngFor="let tag of tabs" [routerLink]="tag.link"> 
+          <span>{{ tag.name }}</span>
+     </div>
+</section>

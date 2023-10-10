@@ -1,0 +1,19 @@
+input.field {
+     margin-bottom: 20px;
+     border-radius: 5px;
+}
+
+@media all and (max-width: 450px) {
+     form {
+          margin: 50px 5px; 
+          padding: 50px 15px 35px 15px;
+
+          input {
+               padding-left: 10px;
+          }
+
+          button {
+               width: 100%;
+          }
+     }
+}

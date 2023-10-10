@@ -1,0 +1,50 @@
+<ul class="pagination">
+     <li class="pagination-box unselectable" *ngIf="currentPage > 1" (click)="move(false)">
+          < Предыдущая
+     </li>
+
+     <ul class="pagination-pages">
+          <li 
+               class="pagination-box unselectable first" 
+               (click)="firstPage()"
+               *ngIf="currentPage > 3"
+          >
+               1
+          </li>
+
+          <li 
+               class="pagination-box unselectable last" 
+               (click)="firstPage()"
+               *ngIf="currentPage > 3"
+          >
+               ...
+          </li>
+
+          <li 
+               class="pagination-box unselectable" 
+               [ngClass]="{'active': page.active}" 
+               *ngFor="let page of pages;"
+               (click)="choosePage(page)"
+          >
+               {{ page.index }}
+          </li>
+          <!-- <li 
+               class="pagination-box unselectable last" 
+               (click)="lastPage()"
+               *ngIf="currentPage < countPages - 2"
+          >
+               ...
+          </li>
+          <li 
+               class="pagination-box unselectable last" 
+               (click)="lastPage()"
+               *ngIf="currentPage < countPages - 2"
+          >
+               {{ 360 }}
+          </li> -->
+     </ul>
+
+     <li class="pagination-box unselectable" *ngIf="currentPage < countPages" (click)="move(true)">
+          Следующая >
+     </li>
+</ul>

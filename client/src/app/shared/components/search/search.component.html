@@ -1,0 +1,28 @@
+<div class="search">
+    <input 
+         type="search" 
+         class="search-field" 
+         placeholder="Введите название компании, описание, сайт, email, лицензию, или директора" 
+         #searchField 
+         (input)="search($event)"
+    >
+    <div class="search-results">
+         <div class="searched-company-box" *ngFor="let company of searchedCompanies">
+              <a routerLink="{{link}}/{{company._id}}">
+                   <p class="name-company">{{ company.name }}</p>
+                   <app-rating [pickedRating]="company.rating / (company.comments.length || 1)"></app-rating>
+                   <p class="address-company">{{ company.address[0]?.country }}</p>
+              </a>
+         </div>
+    </div>                    
+
+    <div class="no-search-result" *ngIf="searchField.value.length >= 1 && searchedCompanies.length === 0">
+         <div class="searched-company-box">
+              <p>
+                   К сожалению по Вашему запросу компаний не найдено. <br> 
+                   Предлагаем создать её и оставить оставить Ваш отзыв. Помогите другим не быть обманутыми.
+              </p>
+              <button type="button" class="btn" routerLink="/auth/register">Создать компанию самому</button>
+         </div> 
+    </div>
+</div>

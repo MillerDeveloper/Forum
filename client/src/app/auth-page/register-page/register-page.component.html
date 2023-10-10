@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<form class="form" (submit)="register()" [formGroup]="registerFormGroup">
+     <input 
+          type="email" 
+          class="field" 
+          placeholder="Введите Ваш email" 
+          formControlName="email"
+          autocomplete="on"
+          required
+     >
+     <input 
+          type="text" 
+          class="field" 
+          placeholder="Введите Ваше имя" 
+          formControlName="name"
+          autocomplete="on"
+          required
+     >
+     <input 
+          type="password" 
+          class="field" 
+          placeholder="Введите Ваш пароль" 
+          formControlName="password"
+          autocomplete="on"
+          required
+     >
+     <input 
+          type="password" 
+          class="field" 
+          placeholder="Повторите Ваш пароль" 
+          formControlName="repeatedPassword"
+          autocomplete="on"
+          required
+     >
+
+     <button class="btn" type="submit" [disabled]="!registerFormGroup.valid">Войти</button> 
+</form> 

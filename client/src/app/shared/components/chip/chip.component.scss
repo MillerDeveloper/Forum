@@ -1,0 +1,25 @@
+.chip {
+     background: #000;
+     color: white;
+     padding: 8px 15px;
+     border-radius: 20px;
+     display: inline-block;
+     margin-right: 5px;
+     margin-top: 5px;
+
+     .delete {
+          border-radius: 50%;
+          background: #fff;
+          border: none;
+          outline: none;
+          margin-left: 20px;
+          border: 1px solid #000;
+          transition: all 0.2s;
+
+          &:hover {
+               background: #000;
+               color: white;
+               border: 1px solid #fff;
+          }
+     }
+}

@@ -1,0 +1,28 @@
+<app-header></app-header>
+<app-tabs [link]="'/cabinet/moderation'"></app-tabs>
+
+<section class="moderation">
+     <div class="container" *ngIf="notVerified.length > 0; else allVerified">
+          <a class="moderation-box card-box" *ngFor="let item of notVerified; index as i;" routerLink="/agencies/{{item.company}}">
+               <div class="fio">
+                    {{ item.fio }}
+               </div>
+
+               <div class="email">
+                    {{ item.email }}
+               </div>
+
+               <div class="date">
+                    {{ item?.date | date: 'dd.MM.yyyy' }}
+               </div>
+
+               <div class="buttons">
+                    <button class="btn" type="button" (click)="allow(item, i, $event)">+</button>
+                    <button class="btn" type="button" (click)="disAllow(item, i, $event)">-</button>
+               </div>
+          </a>
+     </div>
+     <ng-template #allVerified>
+          <h3 class="all-verified section-title">Ничего нет для модерации</h3>
+     </ng-template>
+</section>

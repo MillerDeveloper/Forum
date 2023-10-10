@@ -1,0 +1,31 @@
+.choose {
+     margin-top: 50px;
+
+     .choose-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .choose-card {
+               border: 2px dashed #000000;
+               width: 400px;
+               height: 400px;
+               margin: 5px;
+               transition: all 0.2s;
+               cursor: pointer;
+               
+               p {
+                    margin: 0;
+                    text-align: center;
+                    line-height: 400px;
+                    font-size: 28px;
+               }
+
+               &:hover {
+                    background: #000;
+                    border: 2px dashed #fff;
+                    color: white;
+               }
+          }
+     }
+}

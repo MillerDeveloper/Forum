@@ -1,0 +1,338 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Prata&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+     margin: 0;
+     padding: 0;
+     font-family: 'Prata', serif;
+     word-wrap: break-word;
+}
+
+
+::-webkit-scrollbar {
+     width: 7px;
+}
+  
+.unselectable {
+     -webkit-touch-callout: none; /* iOS Safari */
+     -webkit-user-select: none;   /* Chrome/Safari/Opera */
+     -khtml-user-select: none;    /* Konqueror */
+     -moz-user-select: none;      /* Firefox */
+     -ms-user-select: none;       /* Internet Explorer/Edge */
+     user-select: none;           /* Non-prefixed version, currently
+                                     not supported by any browser */
+}
+  
+::-webkit-scrollbar-thumb {
+   background-color: #BABABA;
+   outline: none;
+   border-radius: 5px;
+}
+
+a, a:hover {
+     text-decoration: none;
+     color: black;
+}
+
+ul {
+     padding-left: 0;
+     list-style: none;
+     font-family: 'Roboto', sans-serif; 
+}
+
+ul li a {
+     transition: all ease 0.2s;
+     border-bottom: 1px dashed transparent;
+}
+
+ul li a.white {
+     color: white;
+}
+
+ul li a:hover {
+     border-bottom: 1px dashed #000;
+}
+
+ul li a.white:hover {
+     border-bottom: 1px dashed #fff; 
+}
+
+button {
+     outline: none;
+     font-family: 'Prata', serif;
+     cursor: pointer;
+}
+
+input {
+     outline: none;
+}
+
+.container {
+     width: 90%;
+     display: block;
+     margin: 0 auto;
+}
+
+.horizontal-list {
+     display: flex;
+     align-items: center;
+}
+
+.btn {
+     background: #000;
+     color: white;
+     border: none;
+     padding: 10px;
+     border-radius: 20px;
+     border: 2px solid transparent;
+     transition: all ease 0.2s;
+}
+
+.btn:disabled {
+     background: rgb(177, 177, 177);
+}
+
+.btn:disabled:hover {
+     background: rgb(177, 177, 177);
+     border: 2px solid rgb(150, 150, 150);
+     color: white;
+}
+
+.btn-large {
+     display: block;
+     margin: 0 auto;
+     width: 350px;
+     height: 70px;
+     font-size: 25px;
+     border-radius: 35px;
+}
+
+.btn:hover {
+     background: transparent;
+     border: 2px solid #000;
+     color: black;
+}
+
+span.grey {
+     color: #BABABA;
+}
+
+.section-title {
+     font-size: 85px;
+     text-align: center;
+     font-family: 'Prata', sans-serif;
+     font-weight: 200;
+     margin-top: 25px;
+     margin-bottom: 35px;
+}
+
+.title-underline {
+     width: 100%;
+     height: 1px;
+     background: #000;
+     display: block;
+     position: relative;
+     top: -20px;
+}
+
+.card-box {
+     background: #FFFFFF;
+     border: 1px solid #000000;
+     padding: 10px;
+     box-shadow: 13px 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.field {
+     border: 1px solid #000000;
+     outline: none;
+     border-radius: 50px;
+     font-size: 20px;
+     padding-left: 20px;
+}
+
+.file-field {
+     display: none;
+}
+
+.field::-webkit-input-placeholder,
+.field-textarea::-webkit-input-placeholder { /* WebKit browsers */
+     font-size: 20px;
+}
+.field:-moz-placeholder,
+.field-textarea::-webkit-input-placeholder { /* Mozilla Firefox 4 to 18 */
+     font-size: 20px;
+}
+.field::-moz-placeholder,
+.field-textarea::-webkit-input-placeholder { /* Mozilla Firefox 19+ */
+     font-size: 20px;
+}
+.field:-ms-input-placeholder,
+.field-textarea::-webkit-input-placeholder { /* Internet Explorer 10+ */
+     font-size: 20px;
+}
+
+.field-textarea {
+     border: 1px solid #000000;
+     outline: none;
+     border-radius: 10px;
+     resize: vertical;
+     font-size: 20px;
+     padding-left: 20px;
+     font-family: 'Roboto', sans-serif !important;
+}
+
+.form {
+     border: 1px solid #000000;
+     box-shadow: 13px 4px 24px rgba(0, 0, 0, 0.25);
+     max-width: 400px;
+     height: auto;
+     padding: 50px 30px 35px 30px;
+     margin: 10% auto;
+}
+
+.form input {
+     display: block;
+     width: 95%;
+     margin-bottom: 10px;
+     height: 50px;
+}
+
+.form button {
+     display: block;
+     margin: 35px auto 0 auto;
+     width: 300px;
+}
+
+form.default {
+     label {
+          margin-top: 20px;
+          display: block;
+     }
+
+     .field {
+          display: block;
+          border-radius: 5px;
+          margin-top: 5px;
+          width: 98%;
+          height: 40px;
+          font-weight: 100;
+          padding-left: 5px;
+          // font-family: 'Prata', sans-serif;
+          
+     }
+     
+     select {
+          width: 100%;
+          height: 40px;
+          border: 1px solid #000;
+          border-radius: 5px;
+          margin-top: 5px;
+     }
+
+     .avatar {
+          margin-top: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between; 
+
+          img {
+               border-radius: 5px; 
+               margin-right: 20px;
+               max-width: 200px;
+               height: auto;
+          }
+
+          .select-avatar {
+               width: 100%;
+          }
+     }
+}
+
+.tabs {
+     display: flex;
+     justify-content: space-between;
+
+     .tab {
+          width: 100%;
+          text-align: center;
+          background: #000;
+          height: 45px;
+          line-height: 45px;
+          border: 1px solid #000;
+          color: white;
+          cursor: pointer;
+     }
+
+     .tab.active {
+          background: #fff;
+          border: 1px solid #000;
+          color: black;
+          cursor: default;
+     }
+}
+
+
+
+@media all and (max-width: 991px) {
+     .container {
+          width: 95%;
+          margin: 0 auto;
+     }
+
+     .section-title {
+          font-size: 70px;
+     }
+}
+
+@media all and (max-width: 768px) {
+     .section-title {
+          font-size: 50px;
+     }
+}
+
+@media all and (max-width: 650px) {
+     .section-title {
+          font-size: 50px;
+     }
+
+     .btn-large {
+          height: 55px;
+     }
+}
+
+@media all and (max-width: 500px) {
+     .section-title {
+          font-size: 38px;
+     }
+
+     .field::-webkit-input-placeholder,
+     .field-textarea::-webkit-input-placeholder { /* WebKit browsers */
+          font-size: 18px;
+     }
+     .field:-moz-placeholder,
+     .field-textarea::-webkit-input-placeholder { /* Mozilla Firefox 4 to 18 */
+          font-size: 18px;
+     }
+     .field::-moz-placeholder,
+     .field-textarea::-webkit-input-placeholder { /* Mozilla Firefox 19+ */
+          font-size: 18px;
+     }
+     .field:-ms-input-placeholder,
+     .field-textarea::-webkit-input-placeholder { /* Internet Explorer 10+ */
+          font-size: 18px;
+     }
+
+     .card-view {
+          app-company-card {
+               display: block;
+               width: 100%;
+          }
+     }
+}
+
+@media all and (max-width: 360px) { 
+     .btn-large {
+          width: 100%;
+          font-size: 22px;
+     }
+}
